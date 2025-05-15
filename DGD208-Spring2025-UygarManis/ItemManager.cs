@@ -27,8 +27,23 @@ namespace DGD208_Spring2025_UygarManis
 
         public async Task UseItemAsync(Pet pet, Item item)
         {
-            Console.WriteLine($"{item.name} kullanılıyor... Lütfen bekleyin...");
-            await Task.Delay(item.duration); // Item kullanım süresi kadar bekle
+            Console.WriteLine($"\n{item.name} kullanılıyor...\n");
+
+            // Animasyonlu bekleme
+            int steps = 3;
+            int delayPerStep = item.duration / steps;
+
+            for (int i = 0; i < steps; i++)
+            {
+                Console.Write("Kullanılıyor");
+                for (int j = 0; j <= i; j++)
+                    Console.Write(".");
+
+                Console.Write("\r"); // satırı geri al
+                await Task.Delay(delayPerStep);
+            }
+
+            Console.WriteLine($"{item.name} başarıyla kullanıldı.\n");
 
             switch (item.itemType)
             {
@@ -42,8 +57,7 @@ namespace DGD208_Spring2025_UygarManis
                     pet.Rest(item.effectAmount);
                     break;
             }
-
-            Console.WriteLine($"{item.name} başarıyla kullanıldı.");
         }
+
     }
 }
