@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGD208-Spring2025-UygarManis", "DGD208-Spring2025-UygarManis\DGD208-Spring2025-UygarManis.csproj", "{A551262A-E1A8-4232-9F6A-C07D0EDB87DA}"
 EndProject

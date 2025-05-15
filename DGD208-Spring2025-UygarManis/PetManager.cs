@@ -26,16 +26,18 @@ namespace DGD208_Spring2025_UygarManis
         {
             if (pets.Count == 0)
             {
-                Console.WriteLine("Hiç sahiplendiğiniz hayvan yok.");
+                Console.WriteLine("\nHiç sahiplendiğiniz hayvan yok.\n");
                 return;
             }
 
-            Console.WriteLine("Sahip olduğunuz hayvanlar:");
+            Console.WriteLine("\nSahip olduğunuz hayvanlar:\n");
+
             foreach (var pet in pets)
             {
-                Console.WriteLine($"- {pet.name} ({pet.petType}) | Açlık: {pet.hunger} | Uyku: {pet.sleep} | Eğlence: {pet.fun}");
+                pet.DisplayStats();   
             }
         }
+
 
         public Pet GetPetByName(string name)
         {

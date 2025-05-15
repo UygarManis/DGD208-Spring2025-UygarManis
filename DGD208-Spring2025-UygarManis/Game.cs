@@ -91,16 +91,14 @@ namespace DGD208_Spring2025_UygarManis
             }
 
             itemManager.ShowAvailableItems();
-            Console.Write("\nKullanmak istediğiniz item adını yazın: ");
-            string itemName = Console.ReadLine();
-            var item = Database.ItemDatabase.GetAllItems().Find(i => i.name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
-
-            if (item == null)
+            Console.Write("\nKullanmak istediğiniz item numarasını girin: ");
+            if (!int.TryParse(Console.ReadLine(), out int itemChoice) || itemChoice < 1 || itemChoice > itemManager.Items.Count)
             {
-                Console.WriteLine("\nBöyle bir item bulunamadı.\n");
+                Console.WriteLine("\nGeçersiz seçim.\n");
                 return;
             }
 
+            var item = itemManager.Items[itemChoice - 1];
             await itemManager.UseItemAsync(pet, item);
             Console.WriteLine();
         }
@@ -113,8 +111,22 @@ namespace DGD208_Spring2025_UygarManis
 
         private void ExitGame()
         {
-            isRunning = false;
-            Console.WriteLine("\nOyun kapatılıyor...\n");
+            Console.Write("\nAre you sure you want to exit? (y/n): ");
+            string response = Console.ReadLine().ToLower();
+
+            if (response == "y")
+            {
+                isRunning = false;
+                Console.WriteLine("\nExiting game...\n");
+            }
+            else if (response == "n")
+            {
+                Console.WriteLine("\nGame continues...\n");
+            }
+            else
+            {
+                Console.WriteLine("\nInvalid input. Game continues...\n");
+            }
         }
     }
 }

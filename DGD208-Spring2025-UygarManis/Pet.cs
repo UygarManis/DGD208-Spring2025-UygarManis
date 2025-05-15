@@ -11,7 +11,7 @@ namespace DGD208_Spring2025_UygarManis
         public int sleep;
         public int fun;
 
-        //  Pet öldüğünde Game'e bildirim için
+        // Event → Pet öldüğünde bildirim için
         public event Action<Pet> OnPetDied;
 
         public Pet(string name, PetType type)
@@ -27,7 +27,7 @@ namespace DGD208_Spring2025_UygarManis
             statManager.StartStatDecrease();
         }
 
-        // Stat artırıcı metodlar (item kullanımı için)
+        // Item kullanımı için stat artırıcı methodlar
         public void Feed(int amount)
         {
             hunger = Math.Min(100, hunger + amount);
@@ -43,16 +43,50 @@ namespace DGD208_Spring2025_UygarManis
             sleep = Math.Min(100, sleep + amount);
         }
 
-        // Ölüm durumunu dışarı bildir
+        // Pet öldüğünde event tetikleme
         public void Die()
         {
             OnPetDied?.Invoke(this);
         }
 
-        // Konsola pet bilgilerini yaz
+        // Geliştirilmiş stat + ascii gösterimi
         public void DisplayStats()
         {
-            Console.WriteLine($"\n{name} ({petType}) → Hunger: {hunger}, Sleep: {sleep}, Fun: {fun}");
+            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine(GetAsciiArt());   // ✅ ascii resmi
+            Console.WriteLine($" Name: {name}    Type: {petType}");
+            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}");
+            Console.WriteLine("------------------------------------\n");
+        }
+
+        // PetType'a göre ascii art döndür
+        private string GetAsciiArt()
+        {
+            switch (petType)
+            {
+                case PetType.Dog:
+                    return @"  / \__
+ (    @\___
+ /         O
+/   (_____/
+/_____/  U ";
+                case PetType.Cat:
+                    return @" /\_/\ 
+( o.o )
+ > ^ <";
+                case PetType.Rabbit:
+                    return @"( \_/ )
+( • . • )
+/ >🍎";
+                case PetType.Dragon:
+                    return @"      /^\/^\
+    _|__|  O|
+\/     /~  \_/ \
+ \____|_________\
+        \_______/";
+                default:
+                    return "";
+            }
         }
     }
 }
