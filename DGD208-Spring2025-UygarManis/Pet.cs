@@ -1,6 +1,4 @@
 ﻿using System;
-using Timer = System.Timers.Timer;
-using System.Timers;
 using DGD208_Spring2025_UygarManis.Enums;
 
 namespace DGD208_Spring2025_UygarManis
@@ -13,8 +11,7 @@ namespace DGD208_Spring2025_UygarManis
         public int sleep;
         public int fun;
 
-        private Timer statTimer;
-
+        //  Pet öldüğünde Game'e bildirim için
         public event Action<Pet> OnPetDied;
 
         public Pet(string name, PetType type)
@@ -25,25 +22,12 @@ namespace DGD208_Spring2025_UygarManis
             sleep = 50;
             fun = 50;
 
-            // 5 saniyede bir statları azalt
-            statTimer = new Timer(5000);
-            statTimer.Elapsed += UpdateStats;
-            statTimer.Start();
+            // Stat düşürme yöneticisini başlat
+            PetStatManager statManager = new PetStatManager(this);
+            statManager.StartStatDecrease();
         }
 
-        private void UpdateStats(object sender, ElapsedEventArgs e)
-        {
-            hunger = Math.Max(0, hunger - 1);
-            sleep = Math.Max(0, sleep - 1);
-            fun = Math.Max(0, fun - 1);
-
-            if (hunger == 0 || sleep == 0 || fun == 0)
-            {
-                statTimer.Stop();
-                OnPetDied?.Invoke(this);
-            }
-        }
-
+        // Stat artırıcı metodlar (item kullanımı için)
         public void Feed(int amount)
         {
             hunger = Math.Min(100, hunger + amount);
@@ -57,6 +41,18 @@ namespace DGD208_Spring2025_UygarManis
         public void Rest(int amount)
         {
             sleep = Math.Min(100, sleep + amount);
+        }
+
+        // Ölüm durumunu dışarı bildir
+        public void Die()
+        {
+            OnPetDied?.Invoke(this);
+        }
+
+        // Konsola pet bilgilerini yaz
+        public void DisplayStats()
+        {
+            Console.WriteLine($"\n{name} ({petType}) → Hunger: {hunger}, Sleep: {sleep}, Fun: {fun}");
         }
     }
 }
