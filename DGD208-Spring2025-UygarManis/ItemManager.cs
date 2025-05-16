@@ -11,7 +11,7 @@ namespace DGD208_Spring2025_UygarManis
     {
         private List<Item> items = ItemDatabase.GetAllItems();
 
-        public List<Item> Items    // ✅ public property
+        public List<Item> Items    
         {
             get { return items; }
         }

@@ -106,7 +106,7 @@ namespace DGD208_Spring2025_UygarManis
         private void ShowCreatorInfo()
         {
             Console.WriteLine("\n--- Proje Sahibi ---");
-            Console.WriteLine("Uygar Manis - Öğrenci No: 225040059\n");
+            Console.WriteLine("Uygar Manis - Öğrenci No: 225040059\n - ChatGPT");
         }
 
         private void ExitGame()
