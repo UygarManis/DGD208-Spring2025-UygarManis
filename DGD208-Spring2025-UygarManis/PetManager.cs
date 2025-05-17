@@ -10,6 +10,13 @@ namespace DGD208_Spring2025_UygarManis
 
         public void AdoptPet(string name, PetType type)
         {
+            //  Aynı isimli pet var mı kontrolü
+            if (pets.Exists(p => p.name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            {
+                Console.WriteLine($"\n{name} adında bir hayvan zaten var. Lütfen farklı bir isim seçin.\n");
+                return;
+            }
+
             Pet newPet = new Pet(name, type);
             newPet.OnPetDied += RemovePet;
             pets.Add(newPet);
@@ -34,10 +41,9 @@ namespace DGD208_Spring2025_UygarManis
 
             foreach (var pet in pets)
             {
-                pet.DisplayStats();   
+                pet.DisplayStats();
             }
         }
-
 
         public Pet GetPetByName(string name)
         {
