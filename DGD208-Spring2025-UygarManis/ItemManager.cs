@@ -11,7 +11,7 @@ namespace DGD208_Spring2025_UygarManis
     {
         private List<Item> items = ItemDatabase.GetAllItems();
 
-        public List<Item> Items    
+        public List<Item> Items
         {
             get { return items; }
         }
@@ -40,7 +40,10 @@ namespace DGD208_Spring2025_UygarManis
                     pet.Feed(item.effectAmount);
                     break;
                 case ItemType.Medicine:
-                    pet.Rest(item.effectAmount);
+                    pet.Heal(item.effectAmount); 
+                    break;
+                case ItemType.Bed:
+                    pet.Rest(item.effectAmount); 
                     break;
                 case ItemType.Toy:
                     pet.Play(item.effectAmount);

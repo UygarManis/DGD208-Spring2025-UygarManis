@@ -10,6 +10,7 @@ namespace DGD208_Spring2025_UygarManis
         public int hunger;
         public int sleep;
         public int fun;
+        public int health; 
 
         // Event → Pet öldüğünde bildirim için
         public event Action<Pet> OnPetDied;
@@ -21,6 +22,7 @@ namespace DGD208_Spring2025_UygarManis
             hunger = 50;
             sleep = 50;
             fun = 50;
+            health = 50; //  Başlangıçta 50
 
             // Stat düşürme yöneticisini başlat
             PetStatManager statManager = new PetStatManager(this);
@@ -43,6 +45,11 @@ namespace DGD208_Spring2025_UygarManis
             sleep = Math.Min(100, sleep + amount);
         }
 
+        public void Heal(int amount) //  Yeni method
+        {
+            health = Math.Min(100, health + amount);
+        }
+
         // Pet öldüğünde event tetikleme
         public void Die()
         {
@@ -53,9 +60,9 @@ namespace DGD208_Spring2025_UygarManis
         public void DisplayStats()
         {
             Console.WriteLine("\n------------------------------------");
-            Console.WriteLine(GetAsciiArt());   // ✅ ascii resmi
+            Console.WriteLine(GetAsciiArt());   
             Console.WriteLine($" Name: {name}    Type: {petType}");
-            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}");
+            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}   Health: {health}"); // ✅ Health gösterimi
             Console.WriteLine("------------------------------------\n");
         }
 

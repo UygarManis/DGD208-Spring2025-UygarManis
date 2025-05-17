@@ -4,6 +4,7 @@
     {
         Food,
         Toy,
-        Medicine
+        Medicine,
+        Bed
     }
 }

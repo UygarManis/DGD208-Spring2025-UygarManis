@@ -10,9 +10,11 @@ namespace DGD208_Spring2025_UygarManis.Database
             {
                 new Item("Köpek Maması", Enums.ItemType.Food, 20, 2000),
                 new Item("Kedi Oyuncağı", Enums.ItemType.Toy, 15, 1500),
-                new Item("Ejderha İksiri", Enums.ItemType.Medicine, 30, 3000),
+                new Item("Şifalı Bitki", Enums.ItemType.Medicine, 10, 3000),
                 new Item("Havuç", Enums.ItemType.Food, 10, 1000),
-                new Item("Top", Enums.ItemType.Toy, 10, 1200)
+                new Item("Top", Enums.ItemType.Toy, 10, 1200),
+                new Item("Kuduz Aşısı", Enums.ItemType.Medicine,25, 8000),
+               
             };
         }
     }
