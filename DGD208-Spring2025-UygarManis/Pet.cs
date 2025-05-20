@@ -10,9 +10,8 @@ namespace DGD208_Spring2025_UygarManis
         public int hunger;
         public int sleep;
         public int fun;
-        public int health; 
+        public int health;
 
-        // Event → Pet öldüğünde bildirim için
         public event Action<Pet> OnPetDied;
 
         public Pet(string name, PetType type)
@@ -22,51 +21,46 @@ namespace DGD208_Spring2025_UygarManis
             hunger = 50;
             sleep = 50;
             fun = 50;
-            health = 50; //  Başlangıçta 50
+            health = 50;
 
-            // Stat düşürme yöneticisini başlat
             PetStatManager statManager = new PetStatManager(this);
             statManager.StartStatDecrease();
         }
 
-        // Item kullanımı için stat artırıcı methodlar
-        public void Feed(int amount)
+        public Pet(string name, PetType type, int statBase)
         {
-            hunger = Math.Min(100, hunger + amount);
+            this.name = name;
+            this.petType = type;
+            hunger = statBase;
+            sleep = statBase;
+            fun = statBase;
+            health = statBase;
+
+            PetStatManager statManager = new PetStatManager(this);
+            statManager.StartStatDecrease();
         }
 
-        public void Play(int amount)
-        {
-            fun = Math.Min(100, fun + amount);
-        }
+        public void Feed(int amount) => hunger = Math.Min(100, hunger + amount);
+        public void Play(int amount) => fun = Math.Min(100, fun + amount);
+        public void Rest(int amount) => sleep = Math.Min(100, sleep + amount);
+        public void Heal(int amount) => health = Math.Min(100, health + amount);
 
-        public void Rest(int amount)
-        {
-            sleep = Math.Min(100, sleep + amount);
-        }
+        public bool warnedHunger = false;
+        public bool warnedSleep = false;
+        public bool warnedFun = false;
+        public bool warnedHealth = false;
 
-        public void Heal(int amount) //  Yeni method
-        {
-            health = Math.Min(100, health + amount);
-        }
+        public void Die() => OnPetDied?.Invoke(this);
 
-        // Pet öldüğünde event tetikleme
-        public void Die()
-        {
-            OnPetDied?.Invoke(this);
-        }
-
-        // Geliştirilmiş stat + ascii gösterimi
         public void DisplayStats()
         {
             Console.WriteLine("\n------------------------------------");
-            Console.WriteLine(GetAsciiArt());   
+            Console.WriteLine(GetAsciiArt());
             Console.WriteLine($" Name: {name}    Type: {petType}");
-            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}   Health: {health}"); // ✅ Health gösterimi
+            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}   Health: {health}");
             Console.WriteLine("------------------------------------\n");
         }
 
-        // PetType'a göre ascii art döndür
         private string GetAsciiArt()
         {
             switch (petType)

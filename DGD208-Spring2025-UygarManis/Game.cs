@@ -43,6 +43,8 @@ namespace DGD208_Spring2025_UygarManis
                         Console.WriteLine("\nGeçersiz seçim. Lütfen tekrar deneyin.\n");
                         break;
                 }
+
+                petManager.CheckForBreeding(); 
             }
         }
 
