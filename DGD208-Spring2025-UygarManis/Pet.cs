@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using DGD208_Spring2025_UygarManis.Enums;
 
 namespace DGD208_Spring2025_UygarManis
@@ -25,6 +26,8 @@ namespace DGD208_Spring2025_UygarManis
 
             PetStatManager statManager = new PetStatManager(this);
             statManager.StartStatDecrease();
+
+            StartGrowthTimer(); 
         }
 
         public Pet(string name, PetType type, int statBase)
@@ -38,6 +41,8 @@ namespace DGD208_Spring2025_UygarManis
 
             PetStatManager statManager = new PetStatManager(this);
             statManager.StartStatDecrease();
+
+            StartGrowthTimer(); 
         }
 
         public void Feed(int amount) => hunger = Math.Min(100, hunger + amount);
@@ -56,10 +61,17 @@ namespace DGD208_Spring2025_UygarManis
         {
             Console.WriteLine("\n------------------------------------");
             Console.WriteLine(GetAsciiArt());
+
             Console.WriteLine($" Name: {name}    Type: {petType}");
-            Console.WriteLine($" Hunger: {hunger}   Sleep: {sleep}   Fun: {fun}   Health: {health}");
+
+            Console.WriteLine($" Hunger: {GetBar(hunger)} {hunger}/100");
+            Console.WriteLine($" Sleep:  {GetBar(sleep)} {sleep}/100");
+            Console.WriteLine($" Fun:    {GetBar(fun)} {fun}/100");
+            Console.WriteLine($" Health: {GetBar(health)} {health}/100");
+
             Console.WriteLine("------------------------------------\n");
         }
+
 
         private string GetAsciiArt()
         {
@@ -70,7 +82,7 @@ namespace DGD208_Spring2025_UygarManis
  (    @\___
  /         O
 /   (_____/
-/_____/  U ";
+ /_____/  U ";
                 case PetType.Cat:
                     return @" /\_/\ 
 ( o.o )
@@ -89,5 +101,37 @@ namespace DGD208_Spring2025_UygarManis
                     return "";
             }
         }
+
+        // Büyüyo
+        private void StartGrowthTimer()
+        {
+            if (!name.StartsWith("Baby ")) return;
+
+            Timer growthTimer = new Timer(_ =>
+            {
+                string oldName = name;
+                name = name.Replace("Baby", "Junior");
+
+                hunger = Math.Max(hunger, 50);
+                sleep = Math.Max(sleep, 50);
+                fun = Math.Max(fun, 50);
+                health = Math.Max(health, 50);
+
+                Console.WriteLine($"\n🍼 {oldName} büyüdü! Artık adı: {name}");
+
+            }, null, 60000, Timeout.Infinite); // 60 saniye sonra bir kez çalışır
+        }
+        private string GetBar(int value)
+        {
+            int totalBars = 15;
+            int filledBars = (value * totalBars) / 100;
+            int emptyBars = totalBars - filledBars;
+
+            string filled = new string('█', filledBars);
+            string empty = new string('░', emptyBars);
+
+            return $"[{filled}{empty}]";
+        }
+
     }
 }
