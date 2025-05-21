@@ -4,6 +4,7 @@
     {
         Hunger,
         Sleep,
-        Fun
+        Fun,
+        Health
     }
 }
