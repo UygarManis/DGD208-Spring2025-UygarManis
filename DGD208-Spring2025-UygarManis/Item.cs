@@ -7,7 +7,7 @@ namespace DGD208_Spring2025_UygarManis
         public string name { get; set; }
         public ItemType itemType { get; set; }
         public int effectAmount { get; set; }
-        public int duration { get; set; } // millisecond cinsinden süre
+        public int duration { get; set; } 
 
         public Item(string name, ItemType itemType, int effectAmount, int duration)
         {

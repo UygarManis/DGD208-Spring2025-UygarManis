@@ -14,31 +14,31 @@ namespace DGD208_Spring2025_UygarManis
         {
             if (pets.Exists(p => p.name.Equals(name, StringComparison.OrdinalIgnoreCase)))
             {
-                Console.WriteLine($"\n{name} adında bir hayvan zaten var. Lütfen farklı bir isim seçin.\n");
+                Console.WriteLine($"\nAgent with codename {name} already exists. Choose a different name.\n");
                 return;
             }
 
             Pet newPet = new Pet(name, type);
             newPet.OnPetDied += RemovePet;
             pets.Add(newPet);
-            Console.WriteLine($"{name} adlı {type} başarıyla sahiplendi!");
+            Console.WriteLine($"Agent {name} ({type}) successfully recruited into the squad!");
         }
 
         private void RemovePet(Pet pet)
         {
             pets.Remove(pet);
-            Console.WriteLine($"{pet.name} adlı {pet.petType} öldü. Listeden çıkarıldı.");
+            Console.WriteLine($"⚠️ Agent {pet.name} ({pet.petType}) has been lost in action.");
         }
 
         public void ShowAllPets()
         {
             if (pets.Count == 0)
             {
-                Console.WriteLine("\nHiç sahiplendiğiniz hayvan yok.\n");
+                Console.WriteLine("\nNo active agents on the field.\n");
                 return;
             }
 
-            Console.WriteLine("\nSahip olduğunuz hayvanlar:\n");
+            Console.WriteLine("\nActive Agents:\n");
 
             foreach (var pet in pets)
             {
@@ -72,7 +72,7 @@ namespace DGD208_Spring2025_UygarManis
                 pets.Add(baby);
                 bredTypes.Add(group.Key);
 
-                Console.WriteLine($"\n👶 Yeni bir {group.Key} doğdu! Adı: {babyName}");
+                Console.WriteLine($"\n🍼 New recruit has joined the mission! Codename: {babyName} (Species: {group.Key})");
             }
         }
     }

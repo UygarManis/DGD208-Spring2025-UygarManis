@@ -27,7 +27,7 @@ namespace DGD208_Spring2025_UygarManis
             PetStatManager statManager = new PetStatManager(this);
             statManager.StartStatDecrease();
 
-            StartGrowthTimer(); 
+            StartGrowthTimer();
         }
 
         public Pet(string name, PetType type, int statBase)
@@ -42,7 +42,7 @@ namespace DGD208_Spring2025_UygarManis
             PetStatManager statManager = new PetStatManager(this);
             statManager.StartStatDecrease();
 
-            StartGrowthTimer(); 
+            StartGrowthTimer();
         }
 
         public void Feed(int amount) => hunger = Math.Min(100, hunger + amount);
@@ -61,17 +61,13 @@ namespace DGD208_Spring2025_UygarManis
         {
             Console.WriteLine("\n------------------------------------");
             Console.WriteLine(GetAsciiArt());
-
-            Console.WriteLine($" Name: {name}    Type: {petType}");
-
+            Console.WriteLine($" Agent Name: {name}    Species: {petType}");
             Console.WriteLine($" Hunger: {GetBar(hunger)} {hunger}/100");
             Console.WriteLine($" Sleep:  {GetBar(sleep)} {sleep}/100");
             Console.WriteLine($" Fun:    {GetBar(fun)} {fun}/100");
             Console.WriteLine($" Health: {GetBar(health)} {health}/100");
-
             Console.WriteLine("------------------------------------\n");
         }
-
 
         private string GetAsciiArt()
         {
@@ -82,7 +78,7 @@ namespace DGD208_Spring2025_UygarManis
  (    @\___
  /         O
 /   (_____/
- /_____/  U ";
+/_____/  U ";
                 case PetType.Cat:
                     return @" /\_/\ 
 ( o.o )
@@ -102,7 +98,6 @@ namespace DGD208_Spring2025_UygarManis
             }
         }
 
-        // Büyüyo
         private void StartGrowthTimer()
         {
             if (!name.StartsWith("Baby ")) return;
@@ -117,10 +112,11 @@ namespace DGD208_Spring2025_UygarManis
                 fun = Math.Max(fun, 50);
                 health = Math.Max(health, 50);
 
-                Console.WriteLine($"\n🍼 {oldName} büyüdü! Artık adı: {name}");
+                Console.WriteLine($"\n🍼 {oldName} has grown up! New codename: {name}");
 
-            }, null, 60000, Timeout.Infinite); // 60 saniye sonra bir kez çalışır
+            }, null, 60000, Timeout.Infinite);
         }
+
         private string GetBar(int value)
         {
             int totalBars = 15;
@@ -132,6 +128,5 @@ namespace DGD208_Spring2025_UygarManis
 
             return $"[{filled}{empty}]";
         }
-
     }
 }

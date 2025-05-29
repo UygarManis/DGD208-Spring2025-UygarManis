@@ -11,19 +11,16 @@ namespace DGD208_Spring2025_UygarManis
     {
         private List<Item> items = ItemDatabase.GetAllItems();
 
-        public List<Item> Items
-        {
-            get { return items; }
-        }
+        public List<Item> Items => items;
 
         public void ShowAvailableItems()
         {
-            Console.WriteLine("\nKullanabileceğin itemler:");
+            Console.WriteLine("\nAvailable items:");
 
             for (int i = 0; i < items.Count; i++)
             {
                 Item item = items[i];
-                Console.WriteLine($"{i + 1}. {item.name} - Tür: {item.itemType}, Etki: {item.effectAmount}, Süre: {item.duration}ms");
+                Console.WriteLine($"{i + 1}. {item.name} - Type: {item.itemType}, Effect: {item.effectAmount}, Duration: {item.duration}ms");
             }
 
             Console.WriteLine();
@@ -31,7 +28,7 @@ namespace DGD208_Spring2025_UygarManis
 
         public async Task UseItemAsync(Pet pet, Item item)
         {
-            Console.WriteLine($"\n{item.name} kullanılıyor...");
+            Console.WriteLine($"\nUsing {item.name}...");
             await Task.Delay(item.duration);
 
             switch (item.itemType)
@@ -40,17 +37,17 @@ namespace DGD208_Spring2025_UygarManis
                     pet.Feed(item.effectAmount);
                     break;
                 case ItemType.Medicine:
-                    pet.Heal(item.effectAmount); 
+                    pet.Heal(item.effectAmount);
                     break;
                 case ItemType.Bed:
-                    pet.Rest(item.effectAmount); 
+                    pet.Rest(item.effectAmount);
                     break;
                 case ItemType.Toy:
                     pet.Play(item.effectAmount);
                     break;
             }
 
-            Console.WriteLine($"{item.name} başarıyla kullanıldı!\n");
+            Console.WriteLine($"{item.name} successfully used!\n");
         }
 
         public List<Item> GetItemsByType(ItemType type)

@@ -8,15 +8,15 @@ namespace DGD208_Spring2025_UygarManis.Database
         {
             return new List<Item>
             {
-                new Item("Köpek Maması", Enums.ItemType.Food, 20, 2000),
-                new Item("Kedi Oyuncağı", Enums.ItemType.Toy, 15, 1500),
-                new Item("Şifalı Bitki", Enums.ItemType.Medicine, 10, 3000),
-                new Item("Havuç", Enums.ItemType.Food, 10, 1000),
-                new Item("Top", Enums.ItemType.Toy, 10, 1200),
-                new Item("Uyku Ilacı", Enums.ItemType.Bed, 5, 1000),
-                new Item("Kaz Tüyünden Yatak", Enums.ItemType.Bed,25, 8000),
-                new Item("Kuduz Aşısı", Enums.ItemType.Medicine,25, 8000),
-                new Item("Girls Night", Enums.ItemType.Toy,30, 9000),
+                new Item("Dog Chow", Enums.ItemType.Food, 20, 2000),
+                new Item("Cat Toy", Enums.ItemType.Toy, 15, 1500),
+                new Item("Healing Herb", Enums.ItemType.Medicine, 10, 3000),
+                new Item("Carrot", Enums.ItemType.Food, 10, 1000),
+                new Item("Ball", Enums.ItemType.Toy, 10, 1200),
+                new Item("Sleeping Pill", Enums.ItemType.Bed, 5, 1000),
+                new Item("Feather Bed", Enums.ItemType.Bed, 25, 8000),
+                new Item("Rabies Vaccine", Enums.ItemType.Medicine, 25, 8000),
+                new Item("Girls Night", Enums.ItemType.Toy, 30, 9000),
             };
         }
     }

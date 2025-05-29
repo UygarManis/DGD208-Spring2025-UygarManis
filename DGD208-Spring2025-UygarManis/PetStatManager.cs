@@ -25,10 +25,10 @@ namespace DGD208_Spring2025_UygarManis
             pet.fun = Math.Max(0, pet.fun - 1);
             pet.health = Math.Max(0, pet.health - 1);
 
-            // ⚠️ Uyarılar sadece bir kez gösterilsin
+            // One-time critical warnings
             if (pet.hunger <= 10 && !pet.warnedHunger)
             {
-                Console.WriteLine($"  {pet.name} çok aç görünüyor!");
+                Console.WriteLine($"⚠️ Agent {pet.name} is starving!");
                 pet.warnedHunger = true;
             }
             else if (pet.hunger > 10)
@@ -38,7 +38,7 @@ namespace DGD208_Spring2025_UygarManis
 
             if (pet.sleep <= 10 && !pet.warnedSleep)
             {
-                Console.WriteLine($"  {pet.name} kendini çok yorgun hissediyor!");
+                Console.WriteLine($"⚠️ Agent {pet.name} is extremely tired!");
                 pet.warnedSleep = true;
             }
             else if (pet.sleep > 10)
@@ -48,7 +48,7 @@ namespace DGD208_Spring2025_UygarManis
 
             if (pet.fun <= 10 && !pet.warnedFun)
             {
-                Console.WriteLine($"  {pet.name} çok sıkılmış!");
+                Console.WriteLine($"⚠️ Agent {pet.name} is bored out of their mind!");
                 pet.warnedFun = true;
             }
             else if (pet.fun > 10)
@@ -58,7 +58,7 @@ namespace DGD208_Spring2025_UygarManis
 
             if (pet.health <= 10 && !pet.warnedHealth)
             {
-                Console.WriteLine($"  {pet.name}'in sağlığı çok kötü!");
+                Console.WriteLine($"⚠️ Agent {pet.name}'s health is in critical condition!");
                 pet.warnedHealth = true;
             }
             else if (pet.health > 10)
@@ -72,6 +72,5 @@ namespace DGD208_Spring2025_UygarManis
                 pet.Die();
             }
         }
-
     }
 }
